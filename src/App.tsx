@@ -1,5 +1,5 @@
 import React from 'react';
-import { Counter } from './features/counter/Counter';
+// import { Counter } from './features/counter/Counter';
 import { ChakraProvider, Box } from '@chakra-ui/react';
 import Header from './components/header/Header';
 import TaskForm from './features/task/TaskForm';
