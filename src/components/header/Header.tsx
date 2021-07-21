@@ -1,25 +1,21 @@
-import { Center, Text } from '@chakra-ui/react';
+import { Box, Text, Input, Button, Flex } from '@chakra-ui/react';
 
 const Header = () => {
   return (
-    <div>
-      <Center
-        bg="#8EC5FC"
-        w="70vw"
-        h="70vh"
-        bgGradient="linear(to-l, #8EC5FC, #fdfdfd)"
-        borderRadius="10"
-      >
+    <>
+      <Box bg="aliceblue" w="80%" h="7vh" mt="3" ml="2">
         <Text
+          p="3"
+          pl="5"
           bgGradient="linear(to-l, #7928CA,#FF0080)"
           bgClip="text"
-          fontSize="6xl"
+          fontSize="2xl"
           fontWeight="extrabold"
         >
           Redux Toolkit Todo
         </Text>
-      </Center>
-    </div>
+      </Box>
+    </>
   );
 };
 
