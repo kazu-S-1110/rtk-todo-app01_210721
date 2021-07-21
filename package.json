@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@chakra-ui/icons": "^1.0.14",
     "@chakra-ui/react": "^1.6.5",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
@@ -21,6 +22,7 @@
     "react-hook-form": "^7.11.1",
     "react-redux": "^7.2.0",
     "react-scripts": "4.0.3",
+    "sass-node": "^4.11.2",
     "typescript": "~4.1.5"
   },
   "scripts": {
