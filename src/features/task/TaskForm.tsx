@@ -1,4 +1,4 @@
-import { Input, Button, Flex } from '@chakra-ui/react';
+import { Input, Flex, FormLabel, Text } from '@chakra-ui/react';
 import { VFC } from 'react';
 import { useForm } from 'react-hook-form';
 
@@ -15,24 +15,19 @@ const TaskForm: VFC = () => {
 
   return (
     <>
-      <Flex alignItems="center">
+      <Flex alignItems="center" ml="8" mt="4">
         <form onSubmit={handleSubmit(handleCreate)}>
+          <FormLabel htmlFor="name">
+            <Text fontSize="xl" ml="1" fontWeight="extrabold" color="#FF0080">
+              New Todo
+            </Text>
+          </FormLabel>
           <Input
-            placeholder="New Todo ?"
+            placeholder={'new'}
             size="lg"
             w="45vw"
-            ml="3"
             {...register('taskTitle')}
           />
-          <Button
-            bg="#00BD9D"
-            color="#FFF"
-            variant="solid"
-            ml="2"
-            type="submit"
-          >
-            Add
-          </Button>
         </form>
       </Flex>
     </>
