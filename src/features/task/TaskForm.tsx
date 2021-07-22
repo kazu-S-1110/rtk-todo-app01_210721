@@ -1,15 +1,18 @@
 import { Input, Flex, FormLabel, Text } from '@chakra-ui/react';
 import { VFC } from 'react';
 import { useForm } from 'react-hook-form';
+import { createTask } from './taskSlice';
+import { useDispatch } from 'react-redux';
 
 type Inputs = {
   taskTitle: string;
 };
 
 const TaskForm: VFC = () => {
+  const dispatch = useDispatch();
   const { register, handleSubmit, reset } = useForm();
   const handleCreate = (data: Inputs) => {
-    console.log(data);
+    dispatch(createTask(data.taskTitle));
     reset();
   };
 
