@@ -17,6 +17,7 @@ import {
 import { EditIcon, DeleteIcon } from '@chakra-ui/icons';
 import { VFC, useState } from 'react';
 import { MdEventNote } from 'react-icons/md';
+import TaskForm from './TaskForm';
 
 interface PropTypes {
   task: {
@@ -70,19 +71,18 @@ const TaskItem: VFC<PropTypes> = ({ task }) => {
           <DeleteIcon />
         </Button>
       </Stack>
-      <Modal closeOnOverlayClick={false} isOpen={open} onClose={handleClose}>
+      <Modal
+        closeOnOverlayClick={false}
+        isOpen={open}
+        onClose={handleClose}
+        size="4xl"
+      >
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Update Task!</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody pb={6}>{task.title}</ModalBody>
-
-          <ModalFooter>
-            <Button colorScheme="blue" mr={3}>
-              Save
-            </Button>
-            <Button onClick={handleClose}>Cancel</Button>
-          </ModalFooter>
+          <ModalBody>
+            {/* editのpropsを渡して条件分岐 */}
+            <TaskForm edit />
+          </ModalBody>
         </ModalContent>
       </Modal>
     </Flex>
