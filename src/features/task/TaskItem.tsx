@@ -42,7 +42,13 @@ const TaskItem: VFC<PropTypes> = ({ task }) => {
         direction="row"
         mr="3"
       >
-        <Checkbox h="40px" w="48px" pl="16px" pr="16px" />
+        <Checkbox
+          h="40px"
+          w="48px"
+          pl="16px"
+          pr="16px"
+          onClick={() => console.log(`checked ${task.id}`)}
+        />
         <Button
           onClick={() => console.log(`edited ${task.id}`)}
           variant="ghost"

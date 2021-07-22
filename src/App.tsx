@@ -24,6 +24,7 @@ const App: React.VFC = () => {
           bg="#ffffff"
           borderRadius="2xl"
           p="6"
+          overflow="hidden"
         >
           <Header />
           <TaskForm />
