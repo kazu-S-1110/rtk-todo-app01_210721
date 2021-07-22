@@ -3,6 +3,7 @@ import React from 'react';
 import { ChakraProvider, Box } from '@chakra-ui/react';
 import Header from './components/header/Header';
 import TaskForm from './features/task/TaskForm';
+import TaskList from './features/task/TaskList';
 
 const App: React.VFC = () => {
   return (
@@ -22,9 +23,11 @@ const App: React.VFC = () => {
           w="70vw"
           bg="#ffffff"
           borderRadius="2xl"
+          p="6"
         >
           <Header />
           <TaskForm />
+          <TaskList />
         </Box>
       </Box>
     </ChakraProvider>

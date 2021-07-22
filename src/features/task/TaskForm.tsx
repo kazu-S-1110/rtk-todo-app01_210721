@@ -15,7 +15,7 @@ const TaskForm: VFC = () => {
 
   return (
     <>
-      <Flex alignItems="center" ml="8" mt="4">
+      <Flex alignItems="center" ml="2" mt="3">
         <form onSubmit={handleSubmit(handleCreate)}>
           <FormLabel htmlFor="name">
             <Text fontSize="xl" ml="1" fontWeight="extrabold" color="#FF0080">
