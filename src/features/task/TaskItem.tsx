@@ -5,10 +5,17 @@ import {
   Text,
   Flex,
   Spacer,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
   Stack,
 } from '@chakra-ui/react';
 import { EditIcon, DeleteIcon } from '@chakra-ui/icons';
-import { VFC } from 'react';
+import { VFC, useState } from 'react';
 import { MdEventNote } from 'react-icons/md';
 
 interface PropTypes {
@@ -20,6 +27,10 @@ interface PropTypes {
 }
 
 const TaskItem: VFC<PropTypes> = ({ task }) => {
+  const [open, setOpen] = useState(false);
+
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   return (
     <Flex
       alignItems="center"
@@ -28,7 +39,7 @@ const TaskItem: VFC<PropTypes> = ({ task }) => {
       h="5vh"
       m="1"
       borderRadius="6"
-      bg="#8EC5FC"
+      bg="#C3E0FD"
     >
       <Box p="3">
         <MdEventNote />
@@ -49,10 +60,7 @@ const TaskItem: VFC<PropTypes> = ({ task }) => {
           pr="16px"
           onClick={() => console.log(`checked ${task.id}`)}
         />
-        <Button
-          onClick={() => console.log(`edited ${task.id}`)}
-          variant="ghost"
-        >
+        <Button onClick={handleOpen} variant="ghost">
           <EditIcon />
         </Button>
         <Button
@@ -62,6 +70,21 @@ const TaskItem: VFC<PropTypes> = ({ task }) => {
           <DeleteIcon />
         </Button>
       </Stack>
+      <Modal closeOnOverlayClick={false} isOpen={open} onClose={handleClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Update Task!</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody pb={6}>{task.title}</ModalBody>
+
+          <ModalFooter>
+            <Button colorScheme="blue" mr={3}>
+              Save
+            </Button>
+            <Button onClick={handleClose}>Cancel</Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
     </Flex>
   );
 };
