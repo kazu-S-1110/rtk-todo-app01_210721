@@ -35,7 +35,13 @@ const TaskItem: VFC<PropTypes> = ({ task }) => {
       </Box>
       <Text>{task.title}</Text>
       <Spacer />
-      <Stack display="flex" justifyContent="center" spacing="5" direction="row">
+      <Stack
+        display="flex"
+        justifyContent="center"
+        spacing="2"
+        direction="row"
+        mr="3"
+      >
         <Checkbox h="40px" w="48px" pl="16px" pr="16px" />
         <Button
           onClick={() => console.log(`edited ${task.id}`)}

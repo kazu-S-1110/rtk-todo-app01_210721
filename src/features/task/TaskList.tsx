@@ -1,11 +1,15 @@
-import React from 'react';
+import { VFC } from 'react';
 import TaskItem from './TaskItem';
+import sampleData from './sampleData.json';
+import { Box } from '@chakra-ui/react';
 
-const TaskList = () => {
+const TaskList: VFC = () => {
   return (
-    <div>
-      <TaskItem task={{ id: 1, title: 'test', completed: false }} />
-    </div>
+    <Box overflow="hidden" h="47vh" maxW="60vw" overflowY="auto" mt="3">
+      {sampleData.map((task) => (
+        <TaskItem task={task} key={task.id} />
+      ))}
+    </Box>
   );
 };
 
