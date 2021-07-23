@@ -8,16 +8,15 @@ import {
   Modal,
   ModalOverlay,
   ModalContent,
-  ModalHeader,
-  ModalFooter,
   ModalBody,
-  ModalCloseButton,
   Stack,
 } from '@chakra-ui/react';
 import { EditIcon, DeleteIcon } from '@chakra-ui/icons';
 import { VFC, useState } from 'react';
 import { MdEventNote } from 'react-icons/md';
 import TaskForm from './TaskForm';
+import { handleModalOpen, selectModalOpen } from './taskSlice';
+import { useDispatch, useSelector } from 'react-redux';
 
 interface PropTypes {
   task: {
@@ -28,10 +27,14 @@ interface PropTypes {
 }
 
 const TaskItem: VFC<PropTypes> = ({ task }) => {
-  const [open, setOpen] = useState(false);
-
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const isModelOpen = useSelector(selectModalOpen);
+  const dispatch = useDispatch();
+  const handleOpen = () => {
+    dispatch(handleModalOpen(true));
+  };
+  const handleClose = () => {
+    dispatch(handleModalOpen(false));
+  };
   return (
     <Flex
       alignItems="center"
@@ -73,7 +76,7 @@ const TaskItem: VFC<PropTypes> = ({ task }) => {
       </Stack>
       <Modal
         closeOnOverlayClick={false}
-        isOpen={open}
+        isOpen={isModelOpen}
         onClose={handleClose}
         size="4xl"
       >

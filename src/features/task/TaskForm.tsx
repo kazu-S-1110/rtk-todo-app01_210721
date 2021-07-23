@@ -3,6 +3,7 @@ import { VFC } from 'react';
 import { useForm } from 'react-hook-form';
 import { createTask } from './taskSlice';
 import { useDispatch } from 'react-redux';
+import { handleModalOpen } from './taskSlice';
 
 type Inputs = {
   taskTitle: string;
@@ -40,8 +41,12 @@ const TaskForm: VFC<PropTypes> = ({ edit }) => {
           <Input size="lg" w="45vw" {...register('taskTitle')} />
           {edit ? (
             <>
-              <Button ml="2">Update!</Button>
-              <Button ml="2">Cancel</Button>
+              <Button ml="2" onClick={() => dispatch(handleModalOpen(false))}>
+                Update!
+              </Button>
+              <Button ml="2" onClick={() => dispatch(handleModalOpen(false))}>
+                Cancel
+              </Button>
             </>
           ) : null}
         </form>
