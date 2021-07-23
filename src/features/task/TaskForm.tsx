@@ -1,7 +1,7 @@
 import { Input, Flex, FormLabel, Text, Button } from '@chakra-ui/react';
 import { VFC } from 'react';
 import { useForm } from 'react-hook-form';
-import { createTask, mountedTask } from './taskSlice';
+import { createTask, mountedTask, editTask } from './taskSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { handleModalOpen } from './taskSlice';
 
@@ -22,8 +22,12 @@ const TaskForm: VFC<PropTypes> = ({ edit }) => {
     reset();
   };
 
-  const handleUpdate = (data: Inputs) => {
-    alert(data.taskTitle);
+  const handleEdit = (data: Inputs) => {
+    // mountしているtaskのidとtitleを格納
+    const sendData = { ...mountTask, title: data.taskTitle };
+    console.log(sendData);
+    dispatch(editTask(sendData));
+    dispatch(handleModalOpen(false));
   };
 
   return (
@@ -31,7 +35,7 @@ const TaskForm: VFC<PropTypes> = ({ edit }) => {
       <Flex alignItems="center" ml="2" mt="3">
         <form
           onSubmit={
-            edit ? handleSubmit(handleUpdate) : handleSubmit(handleCreate)
+            edit ? handleSubmit(handleEdit) : handleSubmit(handleCreate)
           }
         >
           <FormLabel htmlFor="name">
@@ -47,9 +51,7 @@ const TaskForm: VFC<PropTypes> = ({ edit }) => {
           />
           {edit ? (
             <>
-              <Button ml="2" onClick={() => dispatch(handleModalOpen(false))}>
-                Update!
-              </Button>
+              {/* <Button ml="2">Update!</Button> */}
               <Button ml="2" onClick={() => dispatch(handleModalOpen(false))}>
                 Cancel
               </Button>
