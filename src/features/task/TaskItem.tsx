@@ -12,10 +12,10 @@ import {
   Stack,
 } from '@chakra-ui/react';
 import { EditIcon, DeleteIcon } from '@chakra-ui/icons';
-import { VFC, useState } from 'react';
+import { VFC } from 'react';
 import { MdEventNote } from 'react-icons/md';
 import TaskForm from './TaskForm';
-import { handleModalOpen, selectModalOpen } from './taskSlice';
+import { handleModalOpen, selectModalOpen, mountTask } from './taskSlice';
 import { useDispatch, useSelector } from 'react-redux';
 
 interface PropTypes {
@@ -30,6 +30,7 @@ const TaskItem: VFC<PropTypes> = ({ task }) => {
   const isModelOpen = useSelector(selectModalOpen);
   const dispatch = useDispatch();
   const handleOpen = () => {
+    dispatch(mountTask(task));
     dispatch(handleModalOpen(true));
   };
   const handleClose = () => {

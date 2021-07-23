@@ -1,8 +1,8 @@
 import { Input, Flex, FormLabel, Text, Button } from '@chakra-ui/react';
 import { VFC } from 'react';
 import { useForm } from 'react-hook-form';
-import { createTask } from './taskSlice';
-import { useDispatch } from 'react-redux';
+import { createTask, mountedTask } from './taskSlice';
+import { useDispatch, useSelector } from 'react-redux';
 import { handleModalOpen } from './taskSlice';
 
 type Inputs = {
@@ -14,6 +14,7 @@ type PropTypes = {
 };
 
 const TaskForm: VFC<PropTypes> = ({ edit }) => {
+  const mountTask = useSelector(mountedTask);
   const dispatch = useDispatch();
   const { register, handleSubmit, reset } = useForm();
   const handleCreate = (data: Inputs) => {
@@ -38,7 +39,12 @@ const TaskForm: VFC<PropTypes> = ({ edit }) => {
               {edit ? 'Update Todo' : 'New Todo'}
             </Text>
           </FormLabel>
-          <Input size="lg" w="45vw" {...register('taskTitle')} />
+          <Input
+            size="lg"
+            w="45vw"
+            {...register('taskTitle')}
+            defaultValue={edit ? mountTask.title : ''}
+          />
           {edit ? (
             <>
               <Button ml="2" onClick={() => dispatch(handleModalOpen(false))}>
