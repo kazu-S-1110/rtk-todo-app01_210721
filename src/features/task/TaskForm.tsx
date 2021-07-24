@@ -1,11 +1,4 @@
-import {
-  Input,
-  Flex,
-  FormLabel,
-  Text,
-  Button,
-  Checkbox,
-} from '@chakra-ui/react';
+import { Input, Flex, FormLabel, Text, Button } from '@chakra-ui/react';
 import { VFC } from 'react';
 import { useForm } from 'react-hook-form';
 import {
@@ -63,15 +56,41 @@ const TaskForm: VFC<PropTypes> = ({ edit }) => {
             {...register('taskTitle')}
             defaultValue={edit ? mountTask.title : ''}
           />
-          <Button
-            onClick={() => {
-              filteredSwitch
-                ? dispatch(filterTask(false))
-                : dispatch(filterTask(true));
-            }}
+
+          <Flex>
+            <Button
+              fontSize="x-small"
+              onClick={() => dispatch(filterTask('no-fin'))}
+            >
+              未完了タスクのみ表示
+            </Button>
+            <Button
+              fontSize="x-small"
+              onClick={() => dispatch(filterTask('fin'))}
+            >
+              完了済タスクのみ表示
+            </Button>
+            <Button
+              fontSize="x-small"
+              onClick={() => dispatch(filterTask('all'))}
+            >
+              フィルタを削除
+            </Button>
+          </Flex>
+          <Text
+            fontWeight="extrabold"
+            bgGradient="linear(to-l, #7928CA,#ff9bcd)"
+            bgClip="text"
           >
-            filter
-          </Button>
+            {filteredSwitch === 'all' ? <Text>All Tasks display</Text> : null}
+            {filteredSwitch === 'no-fin' ? (
+              <Text>Only No-completed Tasks display</Text>
+            ) : null}
+            {filteredSwitch === 'fin' ? (
+              <Text>Only completed Tasks display</Text>
+            ) : null}
+          </Text>
+
           {edit ? (
             <>
               <Button ml="2" type="submit">

@@ -16,7 +16,7 @@ export interface taskState {
   };
   //モーダルのstate
   isModelOpen: boolean;
-  filterSwitch: boolean;
+  filterSwitch: 'all' | 'no-fin' | 'fin';
 }
 
 const initialState: taskState = {
@@ -34,7 +34,7 @@ const initialState: taskState = {
     completed: false,
   },
   isModelOpen: false,
-  filterSwitch: false,
+  filterSwitch: 'all',
 };
 
 // export const incrementAsync = createAsyncThunk();
@@ -80,6 +80,7 @@ export const taskSlice = createSlice({
       //actionで渡すidに一致するもの以外でtasksを作り直している
       state.tasks = state.tasks.filter((t) => t.id !== action.payload.id);
     },
+    //未完了タスクのみ表示するスイッチ
     filterTask: (state, action) => {
       state.filterSwitch = action.payload;
     },
