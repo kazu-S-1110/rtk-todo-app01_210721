@@ -20,6 +20,7 @@ import {
   selectModalOpen,
   mountTask,
   completeTask,
+  deleteTask,
 } from './taskSlice';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -74,10 +75,7 @@ const TaskItem: VFC<PropTypes> = ({ task }) => {
         <Button onClick={handleOpen} variant="ghost">
           <EditIcon />
         </Button>
-        <Button
-          onClick={() => console.log(`deleted ${task.id}`)}
-          variant="ghost"
-        >
+        <Button onClick={() => dispatch(deleteTask(task))} variant="ghost">
           <DeleteIcon />
         </Button>
       </Stack>
