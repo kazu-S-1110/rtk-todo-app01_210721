@@ -15,14 +15,19 @@ import { EditIcon, DeleteIcon } from '@chakra-ui/icons';
 import { VFC } from 'react';
 import { MdEventNote } from 'react-icons/md';
 import TaskForm from './TaskForm';
-import { handleModalOpen, selectModalOpen, mountTask } from './taskSlice';
+import {
+  handleModalOpen,
+  selectModalOpen,
+  mountTask,
+  completeTask,
+} from './taskSlice';
 import { useDispatch, useSelector } from 'react-redux';
 
 interface PropTypes {
   task: {
     id: number;
     title: string;
-    completed: Boolean;
+    completed: boolean;
   };
 }
 
@@ -63,7 +68,8 @@ const TaskItem: VFC<PropTypes> = ({ task }) => {
           w="48px"
           pl="16px"
           pr="16px"
-          onClick={() => console.log(`checked ${task.id}`)}
+          isChecked={task.completed}
+          onChange={() => dispatch(completeTask(task))}
         />
         <Button onClick={handleOpen} variant="ghost">
           <EditIcon />

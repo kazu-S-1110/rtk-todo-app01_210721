@@ -25,7 +25,7 @@ const TaskForm: VFC<PropTypes> = ({ edit }) => {
   const handleEdit = (data: Inputs) => {
     // mountしているtaskのidとtitleを格納
     const sendData = { ...mountTask, title: data.taskTitle };
-    console.log(sendData);
+    // console.log(sendData);
     dispatch(editTask(sendData));
     dispatch(handleModalOpen(false));
   };
@@ -51,7 +51,9 @@ const TaskForm: VFC<PropTypes> = ({ edit }) => {
           />
           {edit ? (
             <>
-              {/* <Button ml="2">Update!</Button> */}
+              <Button ml="2" type="submit">
+                Update!
+              </Button>
               <Button ml="2" onClick={() => dispatch(handleModalOpen(false))}>
                 Cancel
               </Button>
