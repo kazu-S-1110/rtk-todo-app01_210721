@@ -1,7 +1,20 @@
-import { Input, Flex, FormLabel, Text, Button } from '@chakra-ui/react';
+import {
+  Input,
+  Flex,
+  FormLabel,
+  Text,
+  Button,
+  Checkbox,
+} from '@chakra-ui/react';
 import { VFC } from 'react';
 import { useForm } from 'react-hook-form';
-import { createTask, mountedTask, editTask } from './taskSlice';
+import {
+  createTask,
+  mountedTask,
+  editTask,
+  filterSwitch,
+  filterTask,
+} from './taskSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { handleModalOpen } from './taskSlice';
 
@@ -15,6 +28,7 @@ type PropTypes = {
 
 const TaskForm: VFC<PropTypes> = ({ edit }) => {
   const mountTask = useSelector(mountedTask);
+  const filteredSwitch = useSelector(filterSwitch);
   const dispatch = useDispatch();
   const { register, handleSubmit, reset } = useForm();
   const handleCreate = (data: Inputs) => {
@@ -49,6 +63,15 @@ const TaskForm: VFC<PropTypes> = ({ edit }) => {
             {...register('taskTitle')}
             defaultValue={edit ? mountTask.title : ''}
           />
+          <Button
+            onClick={() => {
+              filteredSwitch
+                ? dispatch(filterTask(false))
+                : dispatch(filterTask(true));
+            }}
+          >
+            filter
+          </Button>
           {edit ? (
             <>
               <Button ml="2" type="submit">
