@@ -1,13 +1,7 @@
 import { Input, Flex, FormLabel, Text, Button } from '@chakra-ui/react';
 import { VFC } from 'react';
 import { useForm } from 'react-hook-form';
-import {
-  createTask,
-  mountedTask,
-  editTask,
-  filterSwitch,
-  filterTask,
-} from './taskSlice';
+import { createTask, mountedTask, editTask } from './taskSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { handleModalOpen } from './taskSlice';
 
@@ -21,7 +15,6 @@ type PropTypes = {
 
 const TaskForm: VFC<PropTypes> = ({ edit }) => {
   const mountTask = useSelector(mountedTask);
-  const filteredSwitch = useSelector(filterSwitch);
   const dispatch = useDispatch();
   const { register, handleSubmit, reset } = useForm();
   const handleCreate = (data: Inputs) => {
@@ -56,47 +49,6 @@ const TaskForm: VFC<PropTypes> = ({ edit }) => {
             {...register('taskTitle')}
             defaultValue={edit ? mountTask.title : ''}
           />
-
-          <Flex mt="4">
-            <Button
-              fontSize="x-small"
-              size="sm"
-              bg="#00BD9D"
-              onClick={() => dispatch(filterTask('no-fin'))}
-            >
-              未完了タスクのみ表示
-            </Button>
-            <Button
-              fontSize="x-small"
-              size="sm"
-              bg="#00BD9D"
-              onClick={() => dispatch(filterTask('fin'))}
-            >
-              完了済タスクのみ表示
-            </Button>
-            <Button
-              fontSize="x-small"
-              size="sm"
-              bg="#00BD9D"
-              onClick={() => dispatch(filterTask('all'))}
-            >
-              フィルタを削除
-            </Button>
-          </Flex>
-          <Text
-            fontWeight="extrabold"
-            bgGradient="linear(to-l, #7928CA,#ff9bcd)"
-            bgClip="text"
-            mt="3"
-          >
-            {filteredSwitch === 'all' ? <Text>All Tasks display</Text> : null}
-            {filteredSwitch === 'no-fin' ? (
-              <Text>Only No-completed Tasks display</Text>
-            ) : null}
-            {filteredSwitch === 'fin' ? (
-              <Text>Only completed Tasks display</Text>
-            ) : null}
-          </Text>
 
           {edit ? (
             <>
