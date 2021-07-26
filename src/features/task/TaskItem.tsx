@@ -11,7 +11,7 @@ import {
   ModalBody,
   Stack,
 } from '@chakra-ui/react';
-import { EditIcon, DeleteIcon } from '@chakra-ui/icons';
+import { EditIcon } from '@chakra-ui/icons';
 import { VFC } from 'react';
 import { MdEventNote } from 'react-icons/md';
 import TaskForm from './TaskForm';
@@ -20,7 +20,6 @@ import {
   selectModalOpen,
   mountTask,
   completeTask,
-  deleteTask,
 } from './taskSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import PopOver from '../../components/header/PopOver';

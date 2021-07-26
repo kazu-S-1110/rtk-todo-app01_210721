@@ -13,7 +13,22 @@ const TaskList: VFC = () => {
 
   return (
     <>
-      <Flex mt="4">
+      <Flex mt="4" alignItems="center">
+        <Text
+          fontWeight="extrabold"
+          bgGradient="linear(to-l, #7928CA,#ff9bcd)"
+          bgClip="text"
+          mr="3"
+          ml="3"
+        >
+          {filteredSwitch === 'all' ? <Text>All Tasks display</Text> : null}
+          {filteredSwitch === 'no-fin' ? (
+            <Text>Only No-completed Tasks display</Text>
+          ) : null}
+          {filteredSwitch === 'fin' ? (
+            <Text>Only completed Tasks display</Text>
+          ) : null}
+        </Text>
         <Button
           fontSize="x-small"
           size="sm"
@@ -39,21 +54,6 @@ const TaskList: VFC = () => {
           フィルタを削除
         </Button>
       </Flex>
-      <Text
-        fontWeight="extrabold"
-        bgGradient="linear(to-l, #7928CA,#ff9bcd)"
-        bgClip="text"
-        mt="3"
-      >
-        {filteredSwitch === 'all' ? <Text>All Tasks display</Text> : null}
-        {filteredSwitch === 'no-fin' ? (
-          <Text>Only No-completed Tasks display</Text>
-        ) : null}
-        {filteredSwitch === 'fin' ? (
-          <Text>Only completed Tasks display</Text>
-        ) : null}
-      </Text>
-
       <Box overflow="hidden" h="47vh" maxW="60vw" overflowY="auto">
         {filteredSwitch === 'fin' &&
           tasks.map(
