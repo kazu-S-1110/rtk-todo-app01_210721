@@ -23,6 +23,7 @@ import {
   deleteTask,
 } from './taskSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import PopOver from '../../components/header/PopOver';
 
 interface PropTypes {
   task: {
@@ -75,9 +76,8 @@ const TaskItem: VFC<PropTypes> = ({ task }) => {
         <Button onClick={handleOpen} variant="ghost">
           <EditIcon />
         </Button>
-        <Button onClick={() => dispatch(deleteTask(task))} variant="ghost">
-          <DeleteIcon />
-        </Button>
+
+        <PopOver task={task} />
       </Stack>
       <Modal
         closeOnOverlayClick={false}
