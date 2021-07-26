@@ -27,7 +27,7 @@ const TaskList: VFC = () => {
   };
 
   return (
-    <Box overflow="hidden" h="47vh" maxW="60vw" overflowY="auto" mt="3">
+    <Box overflow="hidden" h="47vh" maxW="60vw" overflowY="auto">
       {filteredSwitch === 'fin' &&
         tasks.map(
           (task) => task.completed && <TaskItem task={task} key={task.id} />

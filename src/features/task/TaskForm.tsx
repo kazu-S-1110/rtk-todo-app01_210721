@@ -57,21 +57,27 @@ const TaskForm: VFC<PropTypes> = ({ edit }) => {
             defaultValue={edit ? mountTask.title : ''}
           />
 
-          <Flex>
+          <Flex mt="4">
             <Button
               fontSize="x-small"
+              size="sm"
+              bg="#00BD9D"
               onClick={() => dispatch(filterTask('no-fin'))}
             >
               未完了タスクのみ表示
             </Button>
             <Button
               fontSize="x-small"
+              size="sm"
+              bg="#00BD9D"
               onClick={() => dispatch(filterTask('fin'))}
             >
               完了済タスクのみ表示
             </Button>
             <Button
               fontSize="x-small"
+              size="sm"
+              bg="#00BD9D"
               onClick={() => dispatch(filterTask('all'))}
             >
               フィルタを削除
@@ -81,6 +87,7 @@ const TaskForm: VFC<PropTypes> = ({ edit }) => {
             fontWeight="extrabold"
             bgGradient="linear(to-l, #7928CA,#ff9bcd)"
             bgClip="text"
+            mt="3"
           >
             {filteredSwitch === 'all' ? <Text>All Tasks display</Text> : null}
             {filteredSwitch === 'no-fin' ? (
